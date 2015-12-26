@@ -6,6 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jsEncode = require('./p2');
 
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config'); // get our config file
+var User   = require('./models/user'); // get our mongoose model
+
 //var routes = require('./routes/router');
 
 var swig = require('swig');
@@ -30,7 +34,15 @@ app.use(express.static('public'));
 
 
 app.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+  res.render('home', { title: 'Express' });
+});
+
+app.post('/', function(req, res, next) {
+  //login logic
+});
+
+app.get('welcome', function(req, res, next) {
+  res.render('lihp', { title: 'Express' });
 });
 
 app.post('/test', function(req, res) {
@@ -87,4 +99,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
